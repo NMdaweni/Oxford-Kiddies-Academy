@@ -1,0 +1,99 @@
+/* Base styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #FFFFFF; /* clean white background */
+  color: #000000; /* black text */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styles */
+header {
+  background-color: #001F3F; /* navy */
+  color: #FFFFFF;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Logo styling */
+header .logo {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px; /* centers logo and adds spacing below */
+}
+
+/* Navigation styles */
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  color: #FFD700; /* soft yellow links */
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main content area */
+main {
+  padding: 20px;
+}
+
+/* Form styling */
+form {
+  background-color: #F9F9F9;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #001F3F; /* navy label text */
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #FFD700; /* yellow button */
+  color: #000000;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Gallery styling */
+.gallery {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.gallery h3 {
+  margin-top: 30px;
+  color: #001F3F; /* navy section titles */
+}
+
+/* Gallery row layout */
+.gallery-ro
