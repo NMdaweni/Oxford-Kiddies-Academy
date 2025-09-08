@@ -20,7 +20,11 @@
 
   <main>
     <h2>Registration Form</h2>
-    <form action="#" method="post">
+    <!-- Formspree integration -->
+    <form action="https://formspree.io/f/mwpnaybb" method="POST">
+
+      <!-- Hidden Subject for email -->
+      <input type="hidden" name="_subject" value="New Registration Submission">
 
       <!-- Child Information -->
       <fieldset>
@@ -114,5 +118,26 @@
   <footer>
     <p>&copy; 2025 Oxford Kiddies Academy</p>
   </footer>
+
+  <!-- Optional: Thank You alert -->
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          alert('Thank you! Your registration has been submitted.');
+          form.reset();
+        } else {
+          alert('Oops! There was a problem submitting your form.');
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
