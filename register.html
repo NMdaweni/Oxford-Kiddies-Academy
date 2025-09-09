@@ -7,7 +7,7 @@
 </head>
 <body>
   <header>
-    <h1>Register Your Child</h1>  
+    <h1>Register Your Child</h1>
     <nav>
       <a href="index.html">Home</a> |
       <a href="about.html">About</a> |
@@ -20,11 +20,15 @@
 
   <main>
     <h2>Registration Form</h2>
-    <!-- Formspree integration -->
-    <form action="https://formspree.io/f/mwpnaybb" method="POST">
 
-      <!-- Hidden Subject for email -->
+    <!-- NOTE: enctype is necessary for file uploads -->
+    <form id="registrationForm" action="https://formspree.io/f/mwpnaybb" method="POST" enctype="multipart/form-data">
+
       <input type="hidden" name="_subject" value="New Registration Submission">
+
+      <!-- Parent email (important so Formspree can send confirmations) -->
+      <label for="parentEmail">Parent's Email Address:</label>
+      <input type="email" id="parentEmail" name="email" required>
 
       <!-- Child Information -->
       <fieldset>
@@ -52,7 +56,6 @@
         <label for="address">Residential Address:</label>
         <textarea id="address" name="address" rows="3" required></textarea>
 
-        <!-- Class Selection -->
         <label for="class">Select Class:</label>
         <select id="class" name="class" required>
           <option value="">-- Please choose --</option>
@@ -106,11 +109,26 @@
         <input type="tel" id="fatherWorkPhone" name="fatherWorkPhone">
       </fieldset>
 
-      <!-- Notes -->
+      <!-- Uploads -->
+      <fieldset>
+        <legend>Uploads</legend>
+
+        <label for="childPicture">Upload Child’s Picture (jpg/png/pdf):</label>
+        <input type="file" id="childPicture" name="childPicture" accept=".jpg,.jpeg,.png,.pdf" required>
+
+        <label for="birthCert">Upload Birth Certificate (jpg/pdf):</label>
+        <input type="file" id="birthCert" name="birthCert" accept=".jpg,.jpeg,.png,.pdf" required>
+
+        <label for="immunisation">Upload Immunisation Card (jpg/pdf):</label>
+        <input type="file" id="immunisation" name="immunisation" accept=".jpg,.jpeg,.png,.pdf" required>
+
+        <label for="proofResidence">Upload Proof of Residence (jpg/pdf):</label>
+        <input type="file" id="proofResidence" name="proofResidence" accept=".jpg,.jpeg,.png,.pdf" required>
+      </fieldset>
+
       <label for="message">Additional Notes (Optional):</label>
       <textarea id="message" name="message" rows="4" placeholder="Allergies, special needs, etc."></textarea>
 
-      <!-- Submit -->
       <button type="submit">Submit Registration</button>
     </form>
   </main>
@@ -119,25 +137,37 @@
     <p>&copy; 2025 Oxford Kiddies Academy</p>
   </footer>
 
-  <!-- Optional: Thank You alert -->
+  <!-- JS: send form using Fetch (keeps user on page and handles files) -->
   <script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
+    const form = document.getElementById('registrationForm');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault(); // prevent normal submit
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form) // includes files automatically
+          // IMPORTANT: do NOT set 'Content-Type' header — the browser sets multipart/form-data boundary
+        });
+
         if (response.ok) {
           alert('Thank you! Your registration has been submitted.');
           form.reset();
         } else {
-          alert('Oops! There was a problem submitting your form.');
+          alert('Submission failed. Please try again.');
+          console.error('Formspree response status:', response.status);
         }
-      });
+      } catch (err) {
+        alert('Network error. Please try again later.');
+        console.error(err);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Registration';
+      }
     });
   </script>
-
 </body>
 </html>
