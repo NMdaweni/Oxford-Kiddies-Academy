@@ -1,113 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register | Oxford Kiddies Academy</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
+    /* Brand palette */
+    :root{
+      --navy:#0b1a3a;
+      --gold:#ffd700;
+      --white:#ffffff;
+      --black:#111111;
     }
 
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 15px 0;
-      text-align: center;
+    *{box-sizing:border-box}
+    body{
+      font-family:Arial, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      margin:0;
     }
 
-    header nav a {
-      color: white;
+    header{
+      background: var(--navy);
+      color: var(--gold);
+      text-align:center;
+      padding:18px 0;
+    }
+    header h1{ margin:0 0 8px; color: var(--gold); }
+    header nav a{
+      color: var(--gold);
       margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
+      text-decoration:none;
+      font-weight:700;
     }
+    header nav a:hover{ color: var(--white); text-decoration:underline; }
 
-    main {
+    main{
       max-width: 900px;
-      margin: 20px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      margin: 24px auto;
+      background: var(--white);
+      padding: 26px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+    h2{
+      text-align:center;
+      color: var(--navy);
+      margin: 0 0 22px;
     }
 
-    h2 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 25px;
+    form{ display:flex; flex-direction:column; gap:20px; }
+    fieldset{
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      padding: 18px;
     }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    legend{
+      font-weight:700;
+      color: var(--gold);
+      padding: 0 6px;
     }
-
-    fieldset {
-      border: 2px solid #4CAF50;
-      border-radius: 10px;
-      padding: 20px;
+    label{
+      display:block;
+      margin: 10px 0 6px;
+      font-weight:700;
+      color: var(--black);
     }
-
-    legend {
-      font-weight: bold;
-      color: #4CAF50;
-      font-size: 1.2em;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
-      color: #333;
-    }
-
     input[type="text"],
     input[type="tel"],
     input[type="email"],
     input[type="date"],
     select,
-    textarea,
-    input[type="file"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-bottom: 12px;
-      font-size: 1em;
-      box-sizing: border-box;
+    textarea{
+      width:100%;
+      padding:12px;
+      border:1px solid #cfcfcf;
+      border-radius:8px;
+      font-size:1rem;
+    }
+    textarea{ resize:vertical; }
+
+    input:focus, select:focus, textarea:focus{
+      outline:none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(255,215,0,.25);
     }
 
-    textarea {
-      resize: vertical;
+    /* Upload buttons */
+    .file-upload {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
     }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 14px;
-      border-radius: 6px;
-      font-size: 1.1em;
+    .file-upload input[type="file"] {
+      display: none; /* hide default input */
+    }
+    .file-upload label {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 10px 14px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      font-weight:700;
+      transition: background 0.3s;
+    }
+    .file-upload label:hover {
+      background:#e6c200;
+    }
+    .file-name {
+      font-size:0.9rem;
+      color: var(--black);
     }
 
-    button:hover {
-      background-color: #45a049;
+    button{
+      background: var(--gold);
+      color: var(--navy);
+      border:none;
+      padding:14px 16px;
+      border-radius:10px;
+      font-size:1.05rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,.08);
     }
+    button:hover{ background:#e6c200; }
 
-    footer {
-      text-align: center;
-      padding: 15px 0;
-      background-color: #333;
-      color: white;
-      margin-top: 25px;
+    footer{
+      text-align:center;
+      padding:16px 0;
+      background: var(--navy);
+      color: var(--gold);
+      margin-top:28px;
     }
   </style>
 </head>
@@ -165,7 +190,7 @@
           <option value="">-- Please choose --</option>
           <option value="baby">🐞 Baby Class (Ladybug) – 0 to 2 Years</option>
           <option value="toddler">🦋 Toddler Class (Butterfly) – 2 to 3 Years</option>
-          <option value="elephant">🐘 Elephant Class – 3 to 5 Years</option>
+          <option value="elephant">🐘 Elephant Class – 3 to 6 Years</option>
         </select>
       </fieldset>
 
@@ -216,17 +241,30 @@
       <!-- Uploads -->
       <fieldset>
         <legend>Uploads</legend>
-        <label for="childPicture">Upload Child’s Picture (jpg/png/pdf):</label>
-        <input type="file" id="childPicture" name="childPicture" accept=".jpg,.jpeg,.png,.pdf" required>
 
-        <label for="birthCert">Upload Birth Certificate (jpg/pdf):</label>
-        <input type="file" id="birthCert" name="birthCert" accept=".jpg,.jpeg,.png,.pdf" required>
+        <div class="file-upload">
+          <label for="childPicture">Upload Child’s Picture</label>
+          <input type="file" id="childPicture" name="childPicture" accept=".jpg,.jpeg,.png,.pdf" required>
+          <span class="file-name">No file chosen</span>
+        </div>
 
-        <label for="immunisation">Upload Immunisation Card (jpg/pdf):</label>
-        <input type="file" id="immunisation" name="immunisation" accept=".jpg,.jpeg,.png,.pdf" required>
+        <div class="file-upload">
+          <label for="birthCert">Upload Birth Certificate</label>
+          <input type="file" id="birthCert" name="birthCert" accept=".jpg,.jpeg,.png,.pdf" required>
+          <span class="file-name">No file chosen</span>
+        </div>
 
-        <label for="proofResidence">Upload Proof of Residence (jpg/pdf):</label>
-        <input type="file" id="proofResidence" name="proofResidence" accept=".jpg,.jpeg,.png,.pdf" required>
+        <div class="file-upload">
+          <label for="immunisation">Upload Immunisation Card</label>
+          <input type="file" id="immunisation" name="immunisation" accept=".jpg,.jpeg,.png,.pdf" required>
+          <span class="file-name">No file chosen</span>
+        </div>
+
+        <div class="file-upload">
+          <label for="proofResidence">Upload Proof of Residence</label>
+          <input type="file" id="proofResidence" name="proofResidence" accept=".jpg,.jpeg,.png,.pdf" required>
+          <span class="file-name">No file chosen</span>
+        </div>
       </fieldset>
 
       <!-- Additional Notes -->
@@ -242,6 +280,15 @@
   </footer>
 
   <script>
+    // File upload label update
+    document.querySelectorAll('.file-upload input').forEach(input => {
+      input.addEventListener('change', e => {
+        const fileName = e.target.files.length ? e.target.files[0].name : "No file chosen";
+        e.target.nextElementSibling.textContent = fileName;
+      });
+    });
+
+    // Form submission
     const form = document.getElementById('registrationForm');
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -258,6 +305,7 @@
         if (response.ok) {
           alert('Thank you! Your registration has been submitted.');
           form.reset();
+          document.querySelectorAll('.file-name').forEach(span => span.textContent = "No file chosen");
         } else {
           alert('Submission failed. Please try again.');
         }
@@ -272,3 +320,6 @@
   </script>
 </body>
 </html>
+
+
+
