@@ -4,7 +4,6 @@
   <title>Register | Oxford Kiddies Academy</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Brand palette */
     :root{
       --navy:#0b1a3a;
       --gold:#ffd700;
@@ -86,7 +85,6 @@
       box-shadow: 0 0 0 3px rgba(255,215,0,.25);
     }
 
-    /* Upload buttons */
     .file-upload {
       display: flex;
       align-items: center;
@@ -94,7 +92,7 @@
       margin-bottom: 14px;
     }
     .file-upload input[type="file"] {
-      display: none; /* hide default input */
+      display: none;
     }
     .file-upload label {
       background: var(--gold);
@@ -105,13 +103,8 @@
       font-weight:700;
       transition: background 0.3s;
     }
-    .file-upload label:hover {
-      background:#e6c200;
-    }
-    .file-name {
-      font-size:0.9rem;
-      color: var(--black);
-    }
+    .file-upload label:hover { background:#e6c200; }
+    .file-name { font-size:0.9rem; color: var(--black); }
 
     button{
       background: var(--gold);
@@ -134,6 +127,14 @@
       color: var(--gold);
       margin-top:28px;
     }
+
+    #thankyou {
+      display:none;
+      margin-top:20px;
+      color:green;
+      font-weight:bold;
+      text-align:center;
+    }
   </style>
 </head>
 <body>
@@ -152,7 +153,6 @@
   <main>
     <h2>Registration Form</h2>
 
-    <!-- ✅ Netlify Form Setup -->
     <form name="registration" method="POST" data-netlify="true" enctype="multipart/form-data">
       <input type="hidden" name="form-name" value="registration">
 
@@ -189,9 +189,9 @@
         <label for="class">Select Class:</label>
         <select id="class" name="class" required>
           <option value="">-- Please choose --</option>
-          <option value="baby">🐞 Baby Class (Ladybug) – 1 to 2 Years</option>
+          <option value="baby">🐞 Baby Class (Ladybug) – 0 to 2 Years</option>
           <option value="toddler">🦋 Toddler Class (Butterfly) – 2 to 3 Years</option>
-          <option value="elephant">🐘 Elephant Class – 4 to 6 Years</option>
+          <option value="elephant">🐘 Elephant Class – 3 to 6 Years</option>
         </select>
       </fieldset>
 
@@ -239,10 +239,9 @@
         <input type="tel" id="fatherWorkPhone" name="fatherWorkPhone">
       </fieldset>
 
-      <!-- Responsible Person Information -->
+      <!-- Responsible Person -->
       <fieldset>
         <legend>Responsible Person for Fetching the Child</legend>
-
         <label for="responsibleSurname">Surname:</label>
         <input type="text" id="responsibleSurname" name="responsibleSurname" required>
 
@@ -256,19 +255,16 @@
       <!-- Uploads -->
       <fieldset>
         <legend>Uploads</legend>
-
         <div class="file-upload">
           <label for="childPicture">Upload Child’s Picture</label>
           <input type="file" id="childPicture" name="childPicture" accept=".jpg,.jpeg,.png,.pdf" required>
           <span class="file-name">No file chosen</span>
         </div>
-
         <div class="file-upload">
           <label for="birthCert">Upload Birth Certificate</label>
           <input type="file" id="birthCert" name="birthCert" accept=".jpg,.jpeg,.png,.pdf" required>
           <span class="file-name">No file chosen</span>
         </div>
-
         <div class="file-upload">
           <label for="immunisation">Upload Immunisation Card</label>
           <input type="file" id="immunisation" name="immunisation" accept=".jpg,.jpeg,.png,.pdf" required>
@@ -282,6 +278,9 @@
 
       <button type="submit">Submit Registration</button>
     </form>
+
+    <!-- Thank you message -->
+    <div id="thankyou">✅ Thank you! Your registration has been submitted.</div>
   </main>
 
   <footer>
@@ -289,14 +288,30 @@
   </footer>
 
   <script>
-    // File upload label update
+    // Show selected file names
     document.querySelectorAll('.file-upload input').forEach(input => {
       input.addEventListener('change', e => {
         const fileName = e.target.files.length ? e.target.files[0].name : "No file chosen";
         e.target.nextElementSibling.textContent = fileName;
       });
     });
+
+    // Netlify inline thank-you
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const data = new FormData(form);
+
+      fetch("/", {
+        method: "POST",
+        body: data
+      })
+      .then(() => {
+        form.style.display = "none";
+        document.getElementById("thankyou").style.display = "block";
+      })
+      .catch((error) => alert("Submission failed: " + error));
+    });
   </script>
 </body>
 </html>
-
