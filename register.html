@@ -238,6 +238,20 @@
         <input type="tel" id="fatherWorkPhone" name="fatherWorkPhone">
       </fieldset>
 
+      <!-- Responsible Person Information -->
+      <fieldset>
+        <legend>Responsible Person for Fetching the Child</legend>
+
+        <label for="responsibleSurname">Surname:</label>
+        <input type="text" id="responsibleSurname" name="responsibleSurname" required>
+
+        <label for="responsibleFullName">Full Names:</label>
+        <input type="text" id="responsibleFullName" name="responsibleFullName" required>
+
+        <label for="responsibleRelation">Relationship to the Child:</label>
+        <input type="text" id="responsibleRelation" name="responsibleRelation" placeholder="e.g., Mother, Uncle, Guardian" required>
+      </fieldset>
+
       <!-- Uploads -->
       <fieldset>
         <legend>Uploads</legend>
@@ -257,12 +271,6 @@
         <div class="file-upload">
           <label for="immunisation">Upload Immunisation Card</label>
           <input type="file" id="immunisation" name="immunisation" accept=".jpg,.jpeg,.png,.pdf" required>
-          <span class="file-name">No file chosen</span>
-        </div>
-
-        <div class="file-upload">
-          <label for="proofResidence">Upload Proof of Residence</label>
-          <input type="file" id="proofResidence" name="proofResidence" accept=".jpg,.jpeg,.png,.pdf" required>
           <span class="file-name">No file chosen</span>
         </div>
       </fieldset>
@@ -320,6 +328,3 @@
   </script>
 </body>
 </html>
-
-
-
