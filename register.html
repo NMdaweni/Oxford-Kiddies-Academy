@@ -1,112 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register | Oxford Kiddies Academy</title>
-  <link rel="stylesheet" href="style.css">
   <style>
-    :root {
-      --navy: #0b1a3a;
-      --gold: #ffd700;
-      --white: #ffffff;
-      --black: #111111;
+    :root{
+      --navy:#0b1a3a;
+      --gold:#ffd700;
+      --white:#ffffff;
+      --black:#111111;
     }
-    body {
-      font-family: Arial, sans-serif;
+
+    body{
+      font-family:Arial, sans-serif;
       background: var(--white);
-      color: var(--black);
-      margin: 0;
+      margin:0;
+      color:var(--black);
     }
-    header {
-      background: var(--navy);
-      color: var(--gold);
-      text-align: center;
-      padding: 18px 0;
+    header{
+      background:var(--navy);
+      color:var(--gold);
+      text-align:center;
+      padding:18px 0;
     }
-    header h1 { margin: 0 0 8px; color: var(--gold); }
-    header nav a {
-      color: var(--gold);
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: 700;
+    header h1{ margin:0 0 8px; color: var(--gold); }
+    nav a{
+      color:var(--gold);
+      margin:0 10px;
+      text-decoration:none;
+      font-weight:bold;
     }
-    header nav a:hover { color: var(--white); text-decoration: underline; }
+    nav a:hover{ color:var(--white); }
 
-    main {
-      max-width: 900px;
-      margin: 24px auto;
-      background: var(--white);
-      padding: 26px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    main{
+      max-width:900px;
+      margin:24px auto;
+      padding:26px;
+      background:var(--white);
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
     }
-    h2 { text-align: center; color: var(--navy); margin: 0 0 22px; }
-    form { display: flex; flex-direction: column; gap: 20px; }
-    fieldset {
-      border: 2px solid var(--navy);
-      border-radius: 12px;
-      padding: 18px;
-    }
-    legend { font-weight: 700; color: var(--gold); }
-    label { display: block; margin: 10px 0 6px; font-weight: 700; }
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #cfcfcf;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    textarea { resize: vertical; }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(255,215,0,.25);
-    }
+    h2{ text-align:center; color:var(--navy); margin-bottom:20px; }
 
-    .file-upload { margin-bottom: 14px; }
-    .file-upload input[type="file"] { display: none; }
-    .file-upload label {
-      background: var(--gold);
-      color: var(--navy);
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-      display: inline-block;
+    form{ display:flex; flex-direction:column; gap:20px; }
+    fieldset{
+      border:2px solid var(--navy);
+      border-radius:12px;
+      padding:18px;
     }
-    .file-upload .file-name {
-      margin-left: 10px;
-      font-size: 0.9rem;
+    legend{ color:var(--gold); font-weight:bold; }
+    label{ display:block; margin:10px 0 6px; font-weight:bold; }
+    input, select, textarea{
+      width:100%; padding:12px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:1rem;
+    }
+    textarea{ resize:vertical; }
+    input:focus, select:focus, textarea:focus{
+      outline:none;
+      border-color:var(--gold);
+      box-shadow:0 0 0 3px rgba(255,215,0,.25);
     }
 
-    button {
-      background: var(--gold);
-      color: var(--navy);
-      border: none;
-      padding: 14px 16px;
-      border-radius: 10px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-    }
-    button:hover { background: #e6c200; }
+    .file-upload { margin-bottom:14px; }
+    .file-upload input{ display:block; }
 
-    #thankyou {
-      display: none;
-      padding: 20px;
-      background: #e6ffe6;
-      border: 1px solid #00b300;
-      border-radius: 8px;
-      font-weight: bold;
-      color: #006600;
-      text-align: center;
+    button{
+      background:var(--gold);
+      color:var(--navy);
+      border:none;
+      padding:14px 16px;
+      font-size:1rem;
+      font-weight:bold;
+      border-radius:10px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    button:hover{ background:#e6c200; }
+
+    footer{
+      text-align:center;
+      background:var(--navy);
+      color:var(--gold);
+      padding:16px 0;
+      margin-top:28px;
     }
 
-    footer {
-      text-align: center;
-      padding: 16px 0;
-      background: var(--navy);
-      color: var(--gold);
-      margin-top: 28px;
+    #thankYouMessage{
+      display:none;
+      text-align:center;
+      padding:20px;
+      background:#e6c20020;
+      border:2px solid var(--gold);
+      border-radius:12px;
+      margin-top:20px;
+      color:var(--navy);
+      font-weight:bold;
     }
   </style>
 </head>
@@ -126,7 +117,6 @@
   <main>
     <h2>Registration Form</h2>
 
-    <!-- Netlify Registration Form -->
     <form name="registration" method="POST" data-netlify="true" enctype="multipart/form-data">
       <input type="hidden" name="form-name" value="registration">
 
@@ -134,37 +124,123 @@
       <label for="parentEmail">Parent's Email Address:</label>
       <input type="email" id="parentEmail" name="email" required>
 
-      <!-- Example: Child Information -->
+      <!-- Child Information -->
       <fieldset>
         <legend>Child Information</legend>
         <label for="childSurname">Surname:</label>
         <input type="text" id="childSurname" name="childSurname" required>
+
         <label for="childFullName">Full Names:</label>
         <input type="text" id="childFullName" name="childFullName" required>
+
+        <label for="knownAs">Known As:</label>
+        <input type="text" id="knownAs" name="knownAs">
+
         <label for="dob">Date of Birth:</label>
         <input type="date" id="dob" name="dob" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="">-- Please choose --</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="address">Residential Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="class">Select Class:</label>
+        <select id="class" name="class" required>
+          <option value="">-- Please choose --</option>
+          <option value="baby">🐞 Baby Class (Ladybug) – 0 to 2 Years</option>
+          <option value="toddler">🦋 Toddler Class (Butterfly) – 2 to 3 Years</option>
+          <option value="elephant">🐘 Elephant Class – 3 to 6 Years</option>
+        </select>
       </fieldset>
 
-      <!-- File Uploads -->
+      <!-- Mother's Information -->
+      <fieldset>
+        <legend>Mother's Information</legend>
+        <label for="motherSurname">Surname:</label>
+        <input type="text" id="motherSurname" name="motherSurname" required>
+
+        <label for="motherFullName">Full Names:</label>
+        <input type="text" id="motherFullName" name="motherFullName" required>
+
+        <label for="motherEmployer">Employer:</label>
+        <input type="text" id="motherEmployer" name="motherEmployer">
+
+        <label for="motherOccupation">Occupation:</label>
+        <input type="text" id="motherOccupation" name="motherOccupation">
+
+        <label for="motherCellphone">Cellphone:</label>
+        <input type="tel" id="motherCellphone" name="motherCellphone" required>
+
+        <label for="motherWorkPhone">Work Phone:</label>
+        <input type="tel" id="motherWorkPhone" name="motherWorkPhone">
+      </fieldset>
+
+      <!-- Father's Information -->
+      <fieldset>
+        <legend>Father's Information</legend>
+        <label for="fatherSurname">Surname:</label>
+        <input type="text" id="fatherSurname" name="fatherSurname" required>
+
+        <label for="fatherFullName">Full Names:</label>
+        <input type="text" id="fatherFullName" name="fatherFullName" required>
+
+        <label for="fatherEmployer">Employer:</label>
+        <input type="text" id="fatherEmployer" name="fatherEmployer">
+
+        <label for="fatherOccupation">Occupation:</label>
+        <input type="text" id="fatherOccupation" name="fatherOccupation">
+
+        <label for="fatherCellphone">Cellphone:</label>
+        <input type="tel" id="fatherCellphone" name="fatherCellphone" required>
+
+        <label for="fatherWorkPhone">Work Phone:</label>
+        <input type="tel" id="fatherWorkPhone" name="fatherWorkPhone">
+      </fieldset>
+
+      <!-- Responsible Person Information -->
+      <fieldset>
+        <legend>Responsible Person for Fetching the Child</legend>
+        <label for="responsibleSurname">Surname:</label>
+        <input type="text" id="responsibleSurname" name="responsibleSurname" required>
+
+        <label for="responsibleFullName">Full Names:</label>
+        <input type="text" id="responsibleFullName" name="responsibleFullName" required>
+
+        <label for="responsibleRelation">Relationship to the Child:</label>
+        <input type="text" id="responsibleRelation" name="responsibleRelation" placeholder="e.g., Mother, Uncle, Guardian" required>
+      </fieldset>
+
+      <!-- Uploads -->
       <fieldset>
         <legend>Uploads</legend>
         <div class="file-upload">
           <label for="childPicture">Upload Child’s Picture</label>
-          <input type="file" id="childPicture" name="childPicture" required>
-          <span class="file-name">No file chosen</span>
+          <input type="file" id="childPicture" name="childPicture" accept=".jpg,.jpeg,.png,.pdf" required>
         </div>
         <div class="file-upload">
           <label for="birthCert">Upload Birth Certificate</label>
-          <input type="file" id="birthCert" name="birthCert" required>
-          <span class="file-name">No file chosen</span>
+          <input type="file" id="birthCert" name="birthCert" accept=".jpg,.jpeg,.png,.pdf" required>
+        </div>
+        <div class="file-upload">
+          <label for="immunisation">Upload Immunisation Card</label>
+          <input type="file" id="immunisation" name="immunisation" accept=".jpg,.jpeg,.png,.pdf" required>
         </div>
       </fieldset>
+
+      <!-- Notes -->
+      <label for="message">Additional Notes (Optional):</label>
+      <textarea id="message" name="message" rows="4" placeholder="Allergies, special needs, etc."></textarea>
 
       <button type="submit">Submit Registration</button>
     </form>
 
-    <!-- Thank You Message -->
-    <div id="thankyou">
+    <div id="thankYouMessage">
       ✅ Thank you! Your registration has been submitted successfully.
     </div>
   </main>
@@ -174,29 +250,22 @@
   </footer>
 
   <script>
-    // Show selected file names
-    document.querySelectorAll('.file-upload input').forEach(input => {
-      input.addEventListener('change', e => {
-        const fileName = e.target.files.length ? e.target.files[0].name : "No file chosen";
-        e.target.nextElementSibling.textContent = fileName;
-      });
-    });
-
-    // Inline thank-you message after submission
     const form = document.querySelector("form[name='registration']");
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      const data = new FormData(form);
+    const thankYou = document.getElementById("thankYouMessage");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
 
       fetch("/", {
         method: "POST",
-        body: data
+        body: formData
       })
       .then(() => {
         form.style.display = "none";
-        document.getElementById("thankyou").style.display = "block";
+        thankYou.style.display = "block";
       })
-      .catch((error) => alert("Submission failed: " + error));
+      .catch((error) => alert("Error: " + error));
     });
   </script>
 </body>
