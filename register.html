@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Register | Oxford Kiddies Academy</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register | Oxford Kiddies Academy</title>
   <style>
+    /* Brand palette */
     :root{
       --navy:#0b1a3a;
       --gold:#ffd700;
@@ -12,92 +13,128 @@
       --black:#111111;
     }
 
+    *{box-sizing:border-box}
     body{
       font-family:Arial, sans-serif;
       background: var(--white);
+      color: var(--black);
       margin:0;
-      color:var(--black);
     }
+
     header{
-      background:var(--navy);
-      color:var(--gold);
+      background: var(--navy);
+      color: var(--gold);
       text-align:center;
       padding:18px 0;
     }
     header h1{ margin:0 0 8px; color: var(--gold); }
-    nav a{
-      color:var(--gold);
-      margin:0 10px;
+    header nav a{
+      color: var(--gold);
+      margin: 0 10px;
       text-decoration:none;
-      font-weight:bold;
+      font-weight:700;
     }
-    nav a:hover{ color:var(--white); }
+    header nav a:hover{ color: var(--white); text-decoration:underline; }
 
     main{
-      max-width:900px;
-      margin:24px auto;
-      padding:26px;
-      background:var(--white);
-      border-radius:12px;
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
+      max-width: 900px;
+      margin: 24px auto;
+      background: var(--white);
+      padding: 26px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
     }
-    h2{ text-align:center; color:var(--navy); margin-bottom:20px; }
+    h2{
+      text-align:center;
+      color: var(--navy);
+      margin: 0 0 22px;
+    }
 
     form{ display:flex; flex-direction:column; gap:20px; }
     fieldset{
-      border:2px solid var(--navy);
-      border-radius:12px;
-      padding:18px;
+      border: 2px solid var(--navy);
+      border-radius: 12px;
+      padding: 18px;
+      background: #fffaf0; /* cream background */
     }
-    legend{ color:var(--gold); font-weight:bold; }
-    label{ display:block; margin:10px 0 6px; font-weight:bold; }
-    input, select, textarea{
-      width:100%; padding:12px;
-      border:1px solid #ccc;
+    legend{
+      font-weight:700;
+      color: var(--gold);
+      padding: 0 6px;
+    }
+    label{
+      display:block;
+      margin: 10px 0 6px;
+      font-weight:700;
+      color: var(--black);
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="date"],
+    select,
+    textarea{
+      width:100%;
+      padding:12px;
+      border:1px solid #cfcfcf;
       border-radius:8px;
       font-size:1rem;
     }
     textarea{ resize:vertical; }
+
     input:focus, select:focus, textarea:focus{
       outline:none;
-      border-color:var(--gold);
-      box-shadow:0 0 0 3px rgba(255,215,0,.25);
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(255,215,0,.25);
     }
 
-    .file-upload { margin-bottom:14px; }
-    .file-upload input{ display:block; }
+    /* Upload buttons */
+    .file-upload {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .file-upload input[type="file"] {
+      display: none;
+    }
+    .file-upload label {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight:700;
+      transition: background 0.3s;
+    }
+    .file-upload label:hover {
+      background:#e6c200;
+    }
+    .file-name {
+      font-size:0.9rem;
+      color: var(--black);
+    }
 
     button{
-      background:var(--gold);
-      color:var(--navy);
+      background: var(--gold);
+      color: var(--navy);
       border:none;
       padding:14px 16px;
-      font-size:1rem;
-      font-weight:bold;
       border-radius:10px;
+      font-size:1.05rem;
+      font-weight:800;
       cursor:pointer;
       transition:0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,.08);
     }
     button:hover{ background:#e6c200; }
 
     footer{
       text-align:center;
-      background:var(--navy);
-      color:var(--gold);
       padding:16px 0;
+      background: var(--navy);
+      color: var(--gold);
       margin-top:28px;
-    }
-
-    #thankYouMessage{
-      display:none;
-      text-align:center;
-      padding:20px;
-      background:#e6c20020;
-      border:2px solid var(--gold);
-      border-radius:12px;
-      margin-top:20px;
-      color:var(--navy);
-      font-weight:bold;
     }
   </style>
 </head>
@@ -117,6 +154,7 @@
   <main>
     <h2>Registration Form</h2>
 
+    <!-- Netlify form -->
     <form name="registration" method="POST" data-netlify="true" enctype="multipart/form-data">
       <input type="hidden" name="form-name" value="registration">
 
@@ -219,30 +257,32 @@
       <!-- Uploads -->
       <fieldset>
         <legend>Uploads</legend>
+
         <div class="file-upload">
           <label for="childPicture">Upload Child’s Picture</label>
           <input type="file" id="childPicture" name="childPicture" accept=".jpg,.jpeg,.png,.pdf" required>
+          <span class="file-name">No file chosen</span>
         </div>
+
         <div class="file-upload">
           <label for="birthCert">Upload Birth Certificate</label>
           <input type="file" id="birthCert" name="birthCert" accept=".jpg,.jpeg,.png,.pdf" required>
+          <span class="file-name">No file chosen</span>
         </div>
+
         <div class="file-upload">
           <label for="immunisation">Upload Immunisation Card</label>
           <input type="file" id="immunisation" name="immunisation" accept=".jpg,.jpeg,.png,.pdf" required>
+          <span class="file-name">No file chosen</span>
         </div>
       </fieldset>
 
-      <!-- Notes -->
+      <!-- Additional Notes -->
       <label for="message">Additional Notes (Optional):</label>
       <textarea id="message" name="message" rows="4" placeholder="Allergies, special needs, etc."></textarea>
 
       <button type="submit">Submit Registration</button>
     </form>
-
-    <div id="thankYouMessage">
-      ✅ Thank you! Your registration has been submitted successfully.
-    </div>
   </main>
 
   <footer>
@@ -250,22 +290,12 @@
   </footer>
 
   <script>
-    const form = document.querySelector("form[name='registration']");
-    const thankYou = document.getElementById("thankYouMessage");
-
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      fetch("/", {
-        method: "POST",
-        body: formData
-      })
-      .then(() => {
-        form.style.display = "none";
-        thankYou.style.display = "block";
-      })
-      .catch((error) => alert("Error: " + error));
+    // File upload label update
+    document.querySelectorAll('.file-upload input').forEach(input => {
+      input.addEventListener('change', e => {
+        const fileName = e.target.files.length ? e.target.files[0].name : "No file chosen";
+        e.target.nextElementSibling.textContent = fileName;
+      });
     });
   </script>
 </body>
