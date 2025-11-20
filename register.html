@@ -55,7 +55,7 @@
       border: 2px solid var(--navy);
       border-radius: 12px;
       padding: 18px;
-      background: #fffaf0; /* cream background */
+      background: #fffaf0;
     }
     legend{
       font-weight:700;
@@ -88,7 +88,6 @@
       box-shadow: 0 0 0 3px rgba(255,215,0,.25);
     }
 
-    /* Upload buttons */
     .file-upload {
       display: flex;
       align-items: center;
@@ -156,7 +155,10 @@
 
     <!-- Netlify form -->
     <form name="registration" method="POST" data-netlify="true" enctype="multipart/form-data">
+
+      <!-- REQUIRED Netlify hidden inputs -->
       <input type="hidden" name="form-name" value="registration">
+      <input type="hidden" name="*redirect" value="/success.html">
 
       <!-- Parent email -->
       <label for="parentEmail">Parent's Email Address:</label>
@@ -241,7 +243,7 @@
         <input type="tel" id="fatherWorkPhone" name="fatherWorkPhone">
       </fieldset>
 
-      <!-- Responsible Person Information -->
+      <!-- Responsible Person -->
       <fieldset>
         <legend>Responsible Person for Fetching the Child</legend>
         <label for="responsibleSurname">Surname:</label>
@@ -277,7 +279,6 @@
         </div>
       </fieldset>
 
-      <!-- Additional Notes -->
       <label for="message">Additional Notes (Optional):</label>
       <textarea id="message" name="message" rows="4" placeholder="Allergies, special needs, etc."></textarea>
 
@@ -290,7 +291,6 @@
   </footer>
 
   <script>
-    // File upload label update
     document.querySelectorAll('.file-upload input').forEach(input => {
       input.addEventListener('change', e => {
         const fileName = e.target.files.length ? e.target.files[0].name : "No file chosen";
